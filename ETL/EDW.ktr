@@ -762,6 +762,51 @@
       <to>Write Countries to EDW</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Read Order Details from ODS</from>
+      <to>Merge Order and Details</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Read Order from ODS</from>
+      <to>Merge Order and Details</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Read Customer Number from EDW 2</from>
+      <to>Merge Orders and Customers</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge Order and Details</from>
+      <to>Merge Orders and Customers</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Read Product Codes from EDW 2</from>
+      <to>Merge Orders and Products</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge Orders and Customers</from>
+      <to>Merge Orders and Products</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge Orders and Products</from>
+      <to>Merge Orders and Date 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Read Dates</from>
+      <to>Merge Orders and Date 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge Orders and Date 2</from>
+      <to>Write Orders and Details</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>Merge join 3</name>
@@ -1593,7 +1638,7 @@ FROM customers
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
+      <xloc>352</xloc>
       <yloc>1216</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1635,7 +1680,7 @@ FROM customers
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
+      <xloc>352</xloc>
       <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1781,7 +1826,7 @@ FROM D_City
       </output>
     </remotesteps>
     <GUI>
-      <xloc>752</xloc>
+      <xloc>800</xloc>
       <yloc>1264</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2857,8 +2902,389 @@ FROM D_Product
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1248</xloc>
+      <xloc>1216</xloc>
       <yloc>1456</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read Order Details from ODS</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_modval_ods</connection>
+    <sql>SELECT
+  orderNumber
+, productCode
+, quantityOrdered
+, priceEach
+FROM orderdetails
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>1728</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read Order from ODS</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_modval_ods</connection>
+    <sql>SELECT
+  orderDate
+, requiredDate
+, shippedDate
+, status
+, comments
+, customerNumber
+, orderNumber
+FROM orders
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>1856</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge Order and Details</name>
+    <type>MergeJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <join_type>INNER</join_type>
+    <step1>Read Order Details from ODS</step1>
+    <step2>Read Order from ODS</step2>
+    <keys_1>
+      <key>orderNumber</key>
+    </keys_1>
+    <keys_2>
+      <key>orderNumber</key>
+    </keys_2>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1728</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read Customer Number from EDW 2</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_modval_edw</connection>
+    <sql>SELECT
+  idCustomer
+, customerNumber
+FROM D_Customer
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1856</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge Orders and Customers</name>
+    <type>MergeJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <join_type>FULL OUTER</join_type>
+    <step1>Merge Order and Details</step1>
+    <step2>Read Customer Number from EDW 2</step2>
+    <keys_1>
+      <key>customerNumber</key>
+    </keys_1>
+    <keys_2>
+      <key>customerNumber</key>
+    </keys_2>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>1728</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read Product Codes from EDW 2</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_modval_edw</connection>
+    <sql>SELECT
+  productCode
+, idProduct
+FROM D_Product
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>1856</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge Orders and Products</name>
+    <type>MergeJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <join_type>INNER</join_type>
+    <step1>Merge Orders and Customers</step1>
+    <step2>Read Product Codes from EDW 2</step2>
+    <keys_1>
+      <key>productCode</key>
+    </keys_1>
+    <keys_2>
+      <key>productCode</key>
+    </keys_2>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>800</xloc>
+      <yloc>1728</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge Orders and Date 2</name>
+    <type>MergeJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <join_type>INNER</join_type>
+    <step1>Merge Orders and Products</step1>
+    <step2>Read Dates</step2>
+    <keys_1>
+      <key>orderDate</key>
+      <key>requiredDate</key>
+      <key>shippedDate</key>
+    </keys_1>
+    <keys_2>
+      <key>idDate</key>
+    </keys_2>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1008</xloc>
+      <yloc>1728</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read Dates</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_modval_edw</connection>
+    <sql>SELECT
+  idDate
+, date
+FROM D_Date
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>800</xloc>
+      <yloc>1856</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Write Orders and Details</name>
+    <type>TableOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_modval_edw</connection>
+    <schema />
+    <table>H_OrderDetails</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>idCustomer</column_name>
+        <stream_name>idCustomer</stream_name>
+      </field>
+      <field>
+        <column_name>idProduct</column_name>
+        <stream_name>idProduct</stream_name>
+      </field>
+      <field>
+        <column_name>orderNumber</column_name>
+        <stream_name>orderNumber</stream_name>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1216</xloc>
+      <yloc>1728</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
