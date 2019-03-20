@@ -774,37 +774,92 @@
     </hop>
     <hop>
       <from>Read Customer Number from EDW 2</from>
-      <to>Merge Orders and Customers</to>
+      <to>Group Customers</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Merge Order and Details</from>
+      <to>Sort Orders by Customer Number</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group Customers</from>
+      <to>Sort Customer Numbers</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort Customer Numbers</from>
+      <to>Merge Orders and Customers</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort Orders by Customer Number</from>
       <to>Merge Orders and Customers</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Read Product Codes from EDW 2</from>
-      <to>Merge Orders and Products</to>
+      <to>Sort Products</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Merge Orders and Customers</from>
+      <to>Sort Orders by Product Code</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort Orders by Product Code</from>
       <to>Merge Orders and Products</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Merge Orders and Products</from>
-      <to>Merge Orders and Date 2</to>
+      <from>Sort Products</from>
+      <to>Merge Orders and Products</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Read Dates</from>
-      <to>Merge Orders and Date 2</to>
+      <to>Sort Dates</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Merge Orders and Date 2</from>
-      <to>Write Orders and Details</to>
+      <from>Sort Dates</from>
+      <to>Merge Orders and Order Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge Orders and Products</from>
+      <to>Merge Orders and Order Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge Orders and Order Date</from>
+      <to>Merge Orders and Required Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort Dates</from>
+      <to>Merge Orders and Required Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort Dates</from>
+      <to>Merge Orders and Shipping Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge Orders and Required Date</from>
+      <to>Merge Orders and Shipping Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge Orders and Shipping Date</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
+      <to>Write Order Details to EDW</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -3052,7 +3107,7 @@ FROM D_Customer
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1856</yloc>
+      <yloc>1952</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3067,9 +3122,9 @@ FROM D_Customer
       <method>none</method>
       <schema_name />
     </partitioning>
-    <join_type>FULL OUTER</join_type>
-    <step1>Merge Order and Details</step1>
-    <step2>Read Customer Number from EDW 2</step2>
+    <join_type>INNER</join_type>
+    <step1>Sort Orders by Customer Number</step1>
+    <step2>Sort Customer Numbers</step2>
     <keys_1>
       <key>customerNumber</key>
     </keys_1>
@@ -3085,7 +3140,7 @@ FROM D_Customer
       </output>
     </remotesteps>
     <GUI>
-      <xloc>592</xloc>
+      <xloc>816</xloc>
       <yloc>1728</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3121,8 +3176,8 @@ FROM D_Product
       </output>
     </remotesteps>
     <GUI>
-      <xloc>592</xloc>
-      <yloc>1856</yloc>
+      <xloc>1024</xloc>
+      <yloc>1952</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3138,8 +3193,8 @@ FROM D_Product
       <schema_name />
     </partitioning>
     <join_type>INNER</join_type>
-    <step1>Merge Orders and Customers</step1>
-    <step2>Read Product Codes from EDW 2</step2>
+    <step1>Sort Orders by Product Code</step1>
+    <step2>Sort Products</step2>
     <keys_1>
       <key>productCode</key>
     </keys_1>
@@ -3155,13 +3210,13 @@ FROM D_Product
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
+      <xloc>1232</xloc>
       <yloc>1728</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Merge Orders and Date 2</name>
+    <name>Merge Orders and Order Date</name>
     <type>MergeJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -3173,14 +3228,12 @@ FROM D_Product
     </partitioning>
     <join_type>INNER</join_type>
     <step1>Merge Orders and Products</step1>
-    <step2>Read Dates</step2>
+    <step2>Sort Dates</step2>
     <keys_1>
       <key>orderDate</key>
-      <key>requiredDate</key>
-      <key>shippedDate</key>
     </keys_1>
     <keys_2>
-      <key>idDate</key>
+      <key>date</key>
     </keys_2>
     <attributes />
     <cluster_schema />
@@ -3191,7 +3244,7 @@ FROM D_Product
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>1440</xloc>
       <yloc>1728</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3227,13 +3280,446 @@ FROM D_Date
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
+      <xloc>1440</xloc>
+      <yloc>1952</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Group Customers</name>
+    <type>GroupBy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore />
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname />
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>customerNumber</name>
+      </field>
+      <field>
+        <name>idCustomer</name>
+      </field>
+    </group>
+    <fields>
+      </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1840</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort Orders by Customer Number</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>customerNumber</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>560</xloc>
+      <yloc>1728</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort Customer Numbers</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>customerNumber</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>560</xloc>
+      <yloc>1840</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort Products</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>productCode</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1024</xloc>
       <yloc>1856</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Write Orders and Details</name>
+    <name>Sort Orders by Product Code</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>productCode</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1024</xloc>
+      <yloc>1728</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort Dates</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>date</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1440</xloc>
+      <yloc>1856</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge Orders and Required Date</name>
+    <type>MergeJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <join_type>INNER</join_type>
+    <step1>Merge Orders and Order Date</step1>
+    <step2>Sort Dates</step2>
+    <keys_1>
+      <key>requiredDate</key>
+    </keys_1>
+    <keys_2>
+      <key>date</key>
+    </keys_2>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1648</xloc>
+      <yloc>1728</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge Orders and Shipping Date</name>
+    <type>MergeJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <join_type>INNER</join_type>
+    <step1>Merge Orders and Required Date</step1>
+    <step2>Sort Dates</step2>
+    <keys_1>
+      <key>shippedDate</key>
+    </keys_1>
+    <keys_2>
+      <key>date</key>
+    </keys_2>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1872</xloc>
+      <yloc>1728</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>orderNumber</name>
+        <rename />
+      </field>
+      <field>
+        <name>productCode</name>
+        <rename />
+      </field>
+      <field>
+        <name>quantityOrdered</name>
+        <rename />
+      </field>
+      <field>
+        <name>priceEach</name>
+        <rename />
+      </field>
+      <field>
+        <name>orderDate</name>
+        <rename />
+      </field>
+      <field>
+        <name>requiredDate</name>
+        <rename />
+      </field>
+      <field>
+        <name>shippedDate</name>
+        <rename />
+      </field>
+      <field>
+        <name>status</name>
+        <rename />
+      </field>
+      <field>
+        <name>comments</name>
+        <rename />
+      </field>
+      <field>
+        <name>customerNumber</name>
+        <rename />
+      </field>
+      <field>
+        <name>orderNumber_1</name>
+        <rename />
+      </field>
+      <field>
+        <name>customerNumber_1</name>
+        <rename />
+      </field>
+      <field>
+        <name>idCustomer</name>
+        <rename />
+      </field>
+      <field>
+        <name>productCode_1</name>
+        <rename />
+      </field>
+      <field>
+        <name>idProduct</name>
+        <rename />
+      </field>
+      <field>
+        <name>idDate</name>
+        <rename>idOrderDate</rename>
+      </field>
+      <field>
+        <name>date</name>
+        <rename />
+      </field>
+      <field>
+        <name>idDate_1</name>
+        <rename>idRequiredDate</rename>
+      </field>
+      <field>
+        <name>date_1</name>
+        <rename />
+      </field>
+      <field>
+        <name>idDate_2</name>
+        <rename>idShippingDate</rename>
+      </field>
+      <field>
+        <name>date_2</name>
+        <rename />
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1872</xloc>
+      <yloc>1856</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Write Order Details to EDW</name>
     <type>TableOutput</type>
     <description />
     <distribute>Y</distribute>
@@ -3270,8 +3756,36 @@ FROM D_Date
         <stream_name>idProduct</stream_name>
       </field>
       <field>
+        <column_name>idOrderDate</column_name>
+        <stream_name>idOrderDate</stream_name>
+      </field>
+      <field>
+        <column_name>idRequiredDate</column_name>
+        <stream_name>idRequiredDate</stream_name>
+      </field>
+      <field>
+        <column_name>idShippedDate</column_name>
+        <stream_name>idShippingDate</stream_name>
+      </field>
+      <field>
         <column_name>orderNumber</column_name>
         <stream_name>orderNumber</stream_name>
+      </field>
+      <field>
+        <column_name>idStatus</column_name>
+        <stream_name>status</stream_name>
+      </field>
+      <field>
+        <column_name>quantityOrdered</column_name>
+        <stream_name>quantityOrdered</stream_name>
+      </field>
+      <field>
+        <column_name>priceEach</column_name>
+        <stream_name>priceEach</stream_name>
+      </field>
+      <field>
+        <column_name>employeeNumber</column_name>
+        <stream_name>customerNumber</stream_name>
       </field>
     </fields>
     <attributes />
@@ -3283,8 +3797,8 @@ FROM D_Date
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1216</xloc>
-      <yloc>1728</yloc>
+      <xloc>1872</xloc>
+      <yloc>1952</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
