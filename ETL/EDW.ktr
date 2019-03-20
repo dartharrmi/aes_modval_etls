@@ -431,7 +431,7 @@
     <created_date>2019/03/18 22:36:36.352</created_date>
     <modified_user>-</modified_user>
     <modified_date>2019/03/18 22:36:36.352</modified_date>
-    <key_for_session_key />
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -558,71 +558,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Read Cities from Customers</from>
-      <to>Sort cities</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Read Countries from Customers</from>
-      <to>Sort Countries</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort Countries</from>
-      <to>Select Countries names</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select Countries names</from>
-      <to>Group Countries</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Group Countries</from>
-      <to>Write Countries to EDW</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort Countries</from>
-      <to>Match Countries and IDs</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Write Countries to EDW</from>
-      <to>Match Countries and IDs</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Match Countries and IDs</from>
-      <to>Group States</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Group States</from>
-      <to>Filter Null States</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Filter Null States</from>
-      <to>Write States to EDW</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort cities</from>
-      <to>Match States and IDs 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Write States to EDW</from>
-      <to>Match States and IDs 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Match States and IDs 2</from>
-      <to>Write Cities to EDW</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Write Product Lines to EDW</from>
       <to>Match Countries and IDs 2</to>
       <enabled>Y</enabled>
@@ -633,8 +568,58 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Read Cities from Customers</from>
+      <to>Sort cities</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Match Countries and IDs 2</from>
       <to>Write Products to EDW</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort cities</from>
+      <to>Match States and IDs 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Read Countries from Customers</from>
+      <to>Sort Countries</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Write States to EDW</from>
+      <to>Match States and IDs 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter Null States</from>
+      <to>Write States to EDW</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort Countries</from>
+      <to>Select Countries names</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Match States and IDs 2</from>
+      <to>Write Cities to EDW</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Read Offices from ODS</from>
+      <to>Select values 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group States</from>
+      <to>Filter Null States</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select Countries names</from>
+      <to>Group Countries</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -643,12 +628,22 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Read D_City</from>
-      <to>Merge join</to>
+      <from>Read D_State</from>
+      <to>Merge join 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values</from>
+      <from>Match Countries and IDs</from>
+      <to>Group States</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group Countries</from>
+      <to>Write Countries to EDW</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Read D_City</from>
       <to>Merge join</to>
       <enabled>Y</enabled>
     </hop>
@@ -658,19 +653,24 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Read D_State</from>
-      <to>Merge join 2</to>
+      <from>Write Countries to EDW</from>
+      <to>Match Countries and IDs</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Read Offices from ODS</from>
-      <to>Select values 2</to>
+      <from>Sort Countries</from>
+      <to>Match Countries and IDs</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
+      <to>Merge join</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Read Product Line from ODS</name>
-    <type>TableInput</type>
+    <name>Filter Null States</name>
+    <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -679,19 +679,25 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>aes_modval_ods</connection>
-    <sql>SELECT
-  productLine
-, textDescription
-, htmlDescription
-, image
-FROM productLine
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
+    <send_true_to>Write States to EDW</send_true_to>
+    <send_false_to />
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>state</leftvalue>
+        <function>IS NOT NULL</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text />
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>Y</isnull>
+          <mask />
+        </value>
+      </condition>
+    </compare>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -701,14 +707,14 @@ FROM productLine
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
-      <yloc>32</yloc>
+      <xloc>848</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Write Product Lines to EDW</name>
-    <type>TableOutput</type>
+    <name>Group Countries</name>
+    <type>GroupBy</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -717,29 +723,21 @@ FROM productLine
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>aes_modval_edw</connection>
-    <schema />
-    <table>D_ProductLine</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>N</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>Y</return_keys>
-    <return_field>idProductLine</return_field>
-    <fields>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore />
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname />
+    <give_back_row>N</give_back_row>
+    <group>
       <field>
-        <column_name>name</column_name>
-        <stream_name>productLine</stream_name>
+        <name>country</name>
       </field>
-    </fields>
+    </group>
+    <fields>
+      </fields>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -749,14 +747,14 @@ FROM productLine
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>32</yloc>
+      <xloc>560</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Read Cities from Office</name>
-    <type>TableInput</type>
+    <name>Group States</name>
+    <type>GroupBy</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -765,15 +763,24 @@ FROM productLine
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>aes_modval_ods</connection>
-    <sql>SELECT
-  city, state
-FROM office</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore />
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname />
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>state</name>
+      </field>
+      <field>
+        <name>idCountry</name>
+      </field>
+    </group>
+    <fields>
+      </fields>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -783,8 +790,118 @@ FROM office</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
-      <yloc>464</yloc>
+      <xloc>720</xloc>
+      <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Match States and IDs 2</name>
+    <type>StreamLookup</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <from>Write States to EDW</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>state</name>
+        <field>state</field>
+      </key>
+      <value>
+        <name>idState</name>
+        <rename>idState</rename>
+        <default />
+        <type>Integer</type>
+      </value>
+    </lookup>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>560</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge join</name>
+    <type>MergeJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <join_type>INNER</join_type>
+    <step1>Read D_City</step1>
+    <step2>Select values</step2>
+    <keys_1>
+      <key>name</key>
+    </keys_1>
+    <keys_2>
+      <key>city</key>
+    </keys_2>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>768</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge join 2</name>
+    <type>MergeJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <join_type>INNER</join_type>
+    <step1>Read D_State</step1>
+    <step2>Select values 2</step2>
+    <keys_1>
+      <key>name</key>
+    </keys_1>
+    <keys_2>
+      <key>state</key>
+    </keys_2>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>992</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -824,8 +941,8 @@ FROM customers
     </GUI>
   </step>
   <step>
-    <name>Sort cities</name>
-    <type>SortRows</type>
+    <name>Read Cities from Office</name>
+    <type>TableInput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -834,31 +951,15 @@ FROM customers
       <method>none</method>
       <schema_name />
     </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory />
-    <compress>N</compress>
-    <compress_variable />
-    <unique_rows>Y</unique_rows>
-    <fields>
-      <field>
-        <name>city</name>
-        <ascending>Y</ascending>
-        <case_sensitive>Y</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>state</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
+    <connection>aes_modval_ods</connection>
+    <sql>SELECT
+  city, state
+FROM office</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -868,8 +969,8 @@ FROM customers
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>528</yloc>
+      <xloc>176</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -904,6 +1005,135 @@ FROM customers</sql>
     <GUI>
       <xloc>96</xloc>
       <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read D_City</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_modval_edw</connection>
+    <sql>SELECT
+  idCity
+, name
+FROM D_City
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>640</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select Countries names</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>country</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>city</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>768</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values 2</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>state</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>992</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -958,8 +1188,8 @@ FROM customers</sql>
     </GUI>
   </step>
   <step>
-    <name>Write Countries to EDW</name>
-    <type>TableOutput</type>
+    <name>Sort cities</name>
+    <type>SortRows</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -968,186 +1198,31 @@ FROM customers</sql>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>aes_modval_edw</connection>
-    <schema />
-    <table>D_Country</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>N</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>Y</return_keys>
-    <return_field>idCountry</return_field>
-    <fields>
-      <field>
-        <column_name>countryName</column_name>
-        <stream_name>country</stream_name>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>720</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select Countries names</name>
-    <type>SelectValues</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>country</name>
-        <rename />
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>400</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Group Countries</name>
-    <type>GroupBy</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <all_rows>N</all_rows>
-    <ignore_aggregate>N</ignore_aggregate>
-    <field_ignore />
     <directory>%%java.io.tmpdir%%</directory>
-    <prefix>grp</prefix>
-    <add_linenr>N</add_linenr>
-    <linenr_fieldname />
-    <give_back_row>N</give_back_row>
-    <group>
-      <field>
-        <name>country</name>
-      </field>
-    </group>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>Y</unique_rows>
     <fields>
-      </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>560</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Match Countries and IDs</name>
-    <type>StreamLookup</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <from>Write Countries to EDW</from>
-    <input_sorted>N</input_sorted>
-    <preserve_memory>Y</preserve_memory>
-    <sorted_list>N</sorted_list>
-    <integer_pair>N</integer_pair>
-    <lookup>
-      <key>
-        <name>country</name>
-        <field>country</field>
-      </key>
-      <value>
-        <name>idCountry</name>
-        <rename>idCountry</rename>
-        <default />
-        <type>Integer</type>
-      </value>
-    </lookup>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>560</xloc>
-      <yloc>384</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Group States</name>
-    <type>GroupBy</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <all_rows>N</all_rows>
-    <ignore_aggregate>N</ignore_aggregate>
-    <field_ignore />
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>grp</prefix>
-    <add_linenr>N</add_linenr>
-    <linenr_fieldname />
-    <give_back_row>N</give_back_row>
-    <group>
+      <field>
+        <name>city</name>
+        <ascending>Y</ascending>
+        <case_sensitive>Y</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
       <field>
         <name>state</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
       </field>
-      <field>
-        <name>idCountry</name>
-      </field>
-    </group>
-    <fields>
-      </fields>
+    </fields>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -1157,52 +1232,8 @@ FROM customers</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>720</xloc>
-      <yloc>384</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Filter Null States</name>
-    <type>FilterRows</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <send_true_to>Write States to EDW</send_true_to>
-    <send_false_to />
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>state</leftvalue>
-        <function>IS NOT NULL</function>
-        <rightvalue />
-        <value>
-          <name>constant</name>
-          <type>String</type>
-          <text />
-          <length>-1</length>
-          <precision>-1</precision>
-          <isnull>Y</isnull>
-          <mask />
-        </value>
-      </condition>
-    </compare>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>848</xloc>
-      <yloc>384</yloc>
+      <xloc>320</xloc>
+      <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1259,48 +1290,6 @@ FROM customers</sql>
     </GUI>
   </step>
   <step>
-    <name>Match States and IDs 2</name>
-    <type>StreamLookup</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <from>Write States to EDW</from>
-    <input_sorted>N</input_sorted>
-    <preserve_memory>Y</preserve_memory>
-    <sorted_list>N</sorted_list>
-    <integer_pair>N</integer_pair>
-    <lookup>
-      <key>
-        <name>state</name>
-        <field>state</field>
-      </key>
-      <value>
-        <name>idState</name>
-        <rename>idState</rename>
-        <default />
-        <type>Integer</type>
-      </value>
-    </lookup>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>560</xloc>
-      <yloc>528</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Write Cities to EDW</name>
     <type>TableOutput</type>
     <description />
@@ -1353,7 +1342,55 @@ FROM customers</sql>
     </GUI>
   </step>
   <step>
-    <name>Read Products from ODS</name>
+    <name>Write Countries to EDW</name>
+    <type>TableOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_modval_edw</connection>
+    <schema />
+    <table>D_Country</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>N</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>Y</return_keys>
+    <return_field>idCountry</return_field>
+    <fields>
+      <field>
+        <column_name>countryName</column_name>
+        <stream_name>country</stream_name>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>720</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read D_State</name>
     <type>TableInput</type>
     <description />
     <distribute>Y</distribute>
@@ -1363,14 +1400,11 @@ FROM customers</sql>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>aes_modval_ods</connection>
+    <connection>aes_modval_edw</connection>
     <sql>SELECT
-  productCode
-, productName
-, productLine
-, buyPrice
-, MSRP
-FROM product
+  idState
+, name
+FROM D_State
 </sql>
     <limit>0</limit>
     <lookup />
@@ -1386,8 +1420,92 @@ FROM product
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
-      <yloc>160</yloc>
+      <xloc>464</xloc>
+      <yloc>864</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read Offices from ODS</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_modval_ods</connection>
+    <sql>SELECT
+  officeCode
+, city
+, phone
+, addressLine1
+, addressLine2
+, state
+, postalCode
+, territory
+FROM office
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>768</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Match Countries and IDs</name>
+    <type>StreamLookup</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <from>Write Countries to EDW</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>country</name>
+        <field>country</field>
+      </key>
+      <value>
+        <name>idCountry</name>
+        <rename>idCountry</rename>
+        <default />
+        <type>Integer</type>
+      </value>
+    </lookup>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>560</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1430,6 +1548,131 @@ FROM product
     <GUI>
       <xloc>336</xloc>
       <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read Product Line from ODS</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_modval_ods</connection>
+    <sql>SELECT
+  productLine
+, textDescription
+, htmlDescription
+, image
+FROM productLine
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read Products from ODS</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_modval_ods</connection>
+    <sql>SELECT
+  productCode
+, productName
+, productLine
+, buyPrice
+, MSRP
+FROM product
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Write Product Lines to EDW</name>
+    <type>TableOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_modval_edw</connection>
+    <schema />
+    <table>D_ProductLine</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>N</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>Y</return_keys>
+    <return_field>idProductLine</return_field>
+    <fields>
+      <field>
+        <column_name>name</column_name>
+        <stream_name>productLine</stream_name>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1494,252 +1737,6 @@ FROM product
     <GUI>
       <xloc>576</xloc>
       <yloc>160</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Read Offices from ODS</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>N</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>aes_modval_ods</connection>
-    <sql>SELECT
-  officeCode
-, city
-, phone
-, addressLine1
-, addressLine2
-, state
-, postalCode
-, territory
-FROM office
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>112</xloc>
-      <yloc>768</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>city</name>
-        <rename />
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>768</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Read D_City</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>aes_modval_edw</connection>
-    <sql>SELECT
-  idCity
-, name
-FROM D_City
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>640</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Merge join</name>
-    <type>MergeJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <join_type>INNER</join_type>
-    <step1>Read D_City</step1>
-    <step2>Select values</step2>
-    <keys_1>
-      <key>name</key>
-    </keys_1>
-    <keys_2>
-      <key>city</key>
-    </keys_2>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>768</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values 2</name>
-    <type>SelectValues</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>state</name>
-        <rename />
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>992</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Read D_State</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>aes_modval_edw</connection>
-    <sql>SELECT
-  idState
-, name
-FROM D_State
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>864</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Merge join 2</name>
-    <type>MergeJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <join_type>INNER</join_type>
-    <step1>Read D_State</step1>
-    <step2>Select values 2</step2>
-    <keys_1>
-      <key>name</key>
-    </keys_1>
-    <keys_2>
-      <key>state</key>
-    </keys_2>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>992</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

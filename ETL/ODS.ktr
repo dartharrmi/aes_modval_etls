@@ -603,13 +603,13 @@
   </connection>
   <order>
     <hop>
-      <from>Read Product Lines</from>
-      <to>Write Product Lines to ODS</to>
+      <from>Read Employees From classicmodels</from>
+      <to>Data validator 2 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Read Employees From classicmodels</from>
-      <to>Data validator 2 2</to>
+      <from>Read Offices</from>
+      <to>Write Offices to ODS</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -618,8 +618,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Read Payments</from>
-      <to>Write Payments to ODS</to>
+      <from>Write Product Lines to ODS</from>
+      <to>Read Offices</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Read Product Lines</from>
+      <to>Write Product Lines to ODS</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -628,13 +633,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Read Order</from>
-      <to>Write Order to ODS</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Read Order Details</from>
-      <to>Write Order Details to ODS</to>
+      <from>Read Payments</from>
+      <to>Write Payments to ODS</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -653,48 +653,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Read Employees From customerservice</from>
-      <to>Data validator 2 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Write Payments to ODS</from>
-      <to>Read Offices</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Data validator 2</from>
-      <to>Write Customers to ODS</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Write Product Lines to ODS</from>
+      <from>Write Products to ODS</from>
       <to>Read Payments</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Read Offices</from>
-      <to>Write Offices to ODS</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Write Products to ODS</from>
-      <to>Read Order Details</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Read Customers From customerservice</from>
-      <to>Data validator 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Write Order Details to ODS</from>
-      <to>Read Customers From classicmodels</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Data validator 2</from>
-      <to>Write Invalid Customers</to>
+      <from>Write Payments to ODS</from>
+      <to>Write Invalid Payments</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -703,13 +668,58 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Data validator 2</from>
+      <to>Write Invalid Customers</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Read Customers From customerservice</from>
+      <to>Data validator 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Data validator 2 2</from>
+      <to>Write Employees to ODS 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Data validator 2 2</from>
+      <to>Write Employees to ODS 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Data validator 2</from>
+      <to>Write Customers to ODS</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Write Payments to ODS</from>
+      <to>Read Customers From classicmodels</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Write Customers to ODS</from>
       <to>Read Order</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Read Order</from>
+      <to>Write Order to ODS</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Write Order to ODS</from>
-      <to>Read Employees From classicmodels</to>
+      <to>Read Order Details</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Write Order to ODS</from>
+      <to>Write Invalid Customers 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Read Order Details</from>
+      <to>Write Order Details to ODS</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -719,7 +729,17 @@
     </hop>
     <hop>
       <from>Data validator 2 2</from>
-      <to>Write Employees to ODS 2</to>
+      <to>Write Employees to ODS</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Read Customer Calls</from>
+      <to>Write Customer Calls to ODS</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Read Customer Calls</from>
+      <to>Write Customer Calls to ODS</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -728,53 +748,70 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Read Customer Calls</from>
-      <to>Write Customer Calls to ODS</to>
+      <from>Read Employees From customerservice</from>
+      <to>Data validator 2 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Write Employees to ODS</from>
+      <to>Read Customer Calls</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Data validator</name>
-    <type>Validator</type>
+    <name>Write Employees to ODS 2</name>
+    <type>TableOutput</type>
     <description />
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <validate_all>N</validate_all>
-    <concat_errors>N</concat_errors>
-    <concat_separator>|</concat_separator>
-    <validator_field>
-      <name>productCode</name>
-      <validation_name>Validate Existing Products</validation_name>
-      <max_length>15</max_length>
-      <min_length />
-      <null_allowed>N</null_allowed>
-      <only_null_allowed>N</only_null_allowed>
-      <only_numeric_allowed>N</only_numeric_allowed>
-      <data_type>String</data_type>
-      <data_type_verified>N</data_type_verified>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <max_value />
-      <min_value />
-      <start_string />
-      <end_string />
-      <start_string_not_allowed />
-      <end_string_not_allowed />
-      <regular_expression />
-      <regular_expression_not_allowed />
-      <error_code />
-      <error_description />
-      <is_sourcing_values>Y</is_sourcing_values>
-      <sourcing_step>Read Products From customerservice</sourcing_step>
-      <sourcing_field>productCode</sourcing_field>
-      <allowed_value />
-    </validator_field>
+    <connection>aes_puj_modval_ods</connection>
+    <schema />
+    <table>employees</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>employeeNumber</column_name>
+        <stream_name>employeeNumber</stream_name>
+      </field>
+      <field>
+        <column_name>lastName</column_name>
+        <stream_name>lastName</stream_name>
+      </field>
+      <field>
+        <column_name>firstName</column_name>
+        <stream_name>firstName</stream_name>
+      </field>
+      <field>
+        <column_name>email</column_name>
+        <stream_name>email</stream_name>
+      </field>
+      <field>
+        <column_name>extension</column_name>
+        <stream_name>extension</stream_name>
+      </field>
+      <field>
+        <column_name>officeCode</column_name>
+        <stream_name>officeCode</stream_name>
+      </field>
+    </fields>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -784,64 +821,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Data validator 2</name>
-    <type>Validator</type>
-    <description />
-    <distribute>N</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <validate_all>N</validate_all>
-    <concat_errors>N</concat_errors>
-    <concat_separator>|</concat_separator>
-    <validator_field>
-      <name>customerNumber</name>
-      <validation_name>Validate Existing Customers</validation_name>
-      <max_length>15</max_length>
-      <min_length />
-      <null_allowed>N</null_allowed>
-      <only_null_allowed>N</only_null_allowed>
-      <only_numeric_allowed>N</only_numeric_allowed>
-      <data_type>String</data_type>
-      <data_type_verified>N</data_type_verified>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <max_value />
-      <min_value />
-      <start_string />
-      <end_string />
-      <start_string_not_allowed />
-      <end_string_not_allowed />
-      <regular_expression />
-      <regular_expression_not_allowed />
-      <error_code />
-      <error_description />
-      <is_sourcing_values>Y</is_sourcing_values>
-      <sourcing_step>Read Customers From customerservice</sourcing_step>
-      <sourcing_field>customerNumber</sourcing_field>
-      <allowed_value />
-    </validator_field>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>2000</xloc>
-      <yloc>288</yloc>
+      <xloc>3040</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -896,138 +877,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>2816</xloc>
+      <xloc>3040</xloc>
       <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Read Customer Calls</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>aes_puj_modval_customerservice</connection>
-    <sql>SELECT
-  employeeNumber
-, customerNumber
-, productCode
-, text
-, date
-FROM customer_calls
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>3120</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Read Customers From classicmodels</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>aes_puj_modval_classicmodels</connection>
-    <sql>SELECT
-  customerNumber
-, customerName
-, contactLastName
-, contactFirstName
-, phone
-, addressLine1
-, addressLine2
-, city
-, state
-, postalCode
-, country
-, salesRepEmployeeNumber
-, creditLimit
-FROM customers
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1808</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Read Customers From customerservice</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>aes_puj_modval_customerservice</connection>
-    <sql>SELECT
-  customerNumber
-, contactLastName
-, contactFirstName
-, phone
-, addressLine1
-, addressLine2
-, city
-, state
-, postalCode
-, country
-FROM customers
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>2000</xloc>
-      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1068,14 +919,14 @@ FROM employees
       </output>
     </remotesteps>
     <GUI>
-      <xloc>2624</xloc>
+      <xloc>2848</xloc>
       <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Read Employees From customerservice</name>
-    <type>TableInput</type>
+    <name>Write Order Details to ODS</name>
+    <type>TableOutput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -1084,19 +935,41 @@ FROM employees
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>aes_puj_modval_customerservice</connection>
-    <sql>SELECT
-  employeeNumber
-, lastName
-, firstName
-, email
-FROM employees
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
+    <connection>aes_puj_modval_ods</connection>
+    <schema />
+    <table>orderdetails</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>orderNumber</column_name>
+        <stream_name>orderNumber</stream_name>
+      </field>
+      <field>
+        <column_name>productCode</column_name>
+        <stream_name>orderNumber</stream_name>
+      </field>
+      <field>
+        <column_name>quantityOrdered</column_name>
+        <stream_name>quantityOrdered</stream_name>
+      </field>
+      <field>
+        <column_name>priceEach</column_name>
+        <stream_name>priceEach</stream_name>
+      </field>
+    </fields>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -1106,289 +979,8 @@ FROM employees
       </output>
     </remotesteps>
     <GUI>
-      <xloc>2816</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Read Offices</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>aes_puj_modval_classicmodels</connection>
-    <sql>SELECT
-  officeCode
-, city
-, phone
-, addressLine1
-, addressLine2
-, state
-, country
-, postalCode
-, territory
-FROM offices
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
+      <xloc>2672</xloc>
       <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Read Order</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>aes_puj_modval_classicmodels</connection>
-    <sql>SELECT
-  orderNumber
-, orderDate
-, requiredDate
-, shippedDate
-, status
-, comments
-, customerNumber
-FROM orders
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>2288</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Read Order Details</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>aes_puj_modval_classicmodels</connection>
-    <sql>SELECT
-  orderNumber
-, productCode
-, quantityOrdered
-, priceEach
-, orderLineNumber
-FROM orderdetails
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1424</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Read Payments</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>aes_puj_modval_classicmodels</connection>
-    <sql>SELECT
-  customerNumber
-, checkNumber
-, paymentDate
-, amount
-FROM payments
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Read Product Lines</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>aes_puj_modval_classicmodels</connection>
-    <sql>SELECT
-  productLine
-, textDescription
-, htmlDescription
-, image
-FROM productlines
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>48</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Read Products From classicmodels</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>aes_puj_modval_classicmodels</connection>
-    <sql>SELECT
-  productCode
-, productName
-, productLine
-, productScale
-, productVendor
-, productDescription
-, quantityInStock
-, buyPrice
-, MSRP
-FROM products
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>944</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Read Products From customerservice</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>aes_puj_modval_customerservice</connection>
-    <sql>SELECT
-  productCode
-, productName
-, productScale
-, productVendor
-, productDescription
-FROM products
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1120</xloc>
-      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1451,7 +1043,310 @@ FROM products
       </output>
     </remotesteps>
     <GUI>
-      <xloc>3296</xloc>
+      <xloc>3520</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Write Employees to ODS</name>
+    <type>TableOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_puj_modval_ods</connection>
+    <schema />
+    <table>employees</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>employeeNumber</column_name>
+        <stream_name>employeeNumber</stream_name>
+      </field>
+      <field>
+        <column_name>lastName</column_name>
+        <stream_name>lastName</stream_name>
+      </field>
+      <field>
+        <column_name>firstName</column_name>
+        <stream_name>firstName</stream_name>
+      </field>
+      <field>
+        <column_name>email</column_name>
+        <stream_name>email</stream_name>
+      </field>
+      <field>
+        <column_name>extension</column_name>
+        <stream_name>extension</stream_name>
+      </field>
+      <field>
+        <column_name>officeCode</column_name>
+        <stream_name>officeCode</stream_name>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>3184</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read Employees From customerservice</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_puj_modval_customerservice</connection>
+    <sql>SELECT
+  employeeNumber
+, lastName
+, firstName
+, email
+FROM employees
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>3040</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read Customer Calls</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_puj_modval_customerservice</connection>
+    <sql>SELECT
+  employeeNumber
+, customerNumber
+, productCode
+, text
+, date
+FROM customer_calls
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>3344</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read Order Details</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_puj_modval_classicmodels</connection>
+    <sql>SELECT
+  orderNumber
+, productCode
+, quantityOrdered
+, priceEach
+, orderLineNumber
+FROM orderdetails
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>2512</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read Customers From classicmodels</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_puj_modval_classicmodels</connection>
+    <sql>SELECT
+  customerNumber
+, customerName
+, contactLastName
+, contactFirstName
+, phone
+, addressLine1
+, addressLine2
+, city
+, state
+, postalCode
+, country
+, salesRepEmployeeNumber
+, creditLimit
+FROM customers
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1728</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Write Order to ODS</name>
+    <type>TableOutput</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_puj_modval_ods</connection>
+    <schema />
+    <table>orders</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>orderNumber</column_name>
+        <stream_name>orderNumber</stream_name>
+      </field>
+      <field>
+        <column_name>orderDate</column_name>
+        <stream_name>orderDate</stream_name>
+      </field>
+      <field>
+        <column_name>requiredDate</column_name>
+        <stream_name>requiredDate</stream_name>
+      </field>
+      <field>
+        <column_name>shippedDate</column_name>
+        <stream_name>shippedDate</stream_name>
+      </field>
+      <field>
+        <column_name>status</column_name>
+        <stream_name>status</stream_name>
+      </field>
+      <field>
+        <column_name>comments</column_name>
+        <stream_name>comments</stream_name>
+      </field>
+      <field>
+        <column_name>customerNumber</column_name>
+        <stream_name>customerNumber</stream_name>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>2352</xloc>
       <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1543,144 +1438,8 @@ FROM products
       </output>
     </remotesteps>
     <GUI>
-      <xloc>2144</xloc>
+      <xloc>2064</xloc>
       <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Write Employees to ODS</name>
-    <type>TableOutput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>aes_puj_modval_ods</connection>
-    <schema />
-    <table>employees</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
-      <field>
-        <column_name>employeeNumber</column_name>
-        <stream_name>employeeNumber</stream_name>
-      </field>
-      <field>
-        <column_name>lastName</column_name>
-        <stream_name>lastName</stream_name>
-      </field>
-      <field>
-        <column_name>firstName</column_name>
-        <stream_name>firstName</stream_name>
-      </field>
-      <field>
-        <column_name>email</column_name>
-        <stream_name>email</stream_name>
-      </field>
-      <field>
-        <column_name>extension</column_name>
-        <stream_name>extension</stream_name>
-      </field>
-      <field>
-        <column_name>officeCode</column_name>
-        <stream_name>officeCode</stream_name>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>2960</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Write Employees to ODS 2</name>
-    <type>TableOutput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>aes_puj_modval_ods</connection>
-    <schema />
-    <table>employees</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
-      <field>
-        <column_name>employeeNumber</column_name>
-        <stream_name>employeeNumber</stream_name>
-      </field>
-      <field>
-        <column_name>lastName</column_name>
-        <stream_name>lastName</stream_name>
-      </field>
-      <field>
-        <column_name>firstName</column_name>
-        <stream_name>firstName</stream_name>
-      </field>
-      <field>
-        <column_name>email</column_name>
-        <stream_name>email</stream_name>
-      </field>
-      <field>
-        <column_name>extension</column_name>
-        <stream_name>extension</stream_name>
-      </field>
-      <field>
-        <column_name>officeCode</column_name>
-        <stream_name>officeCode</stream_name>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>2816</xloc>
-      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1882,200 +1641,53 @@ FROM products
       </output>
     </remotesteps>
     <GUI>
-      <xloc>2000</xloc>
+      <xloc>1920</xloc>
       <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Write Invalid Products</name>
-    <type>ExcelOutput</type>
+    <name>Data validator 2</name>
+    <type>Validator</type>
     <description />
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <header>Y</header>
-    <footer>N</footer>
-    <encoding>UTF-8</encoding>
-    <append>N</append>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <file>
-      <name>${Internal.Entry.Current.Directory}/productosNoValidas.xls</name>
-      <extention>xls</extention>
-      <do_not_open_newfile_init>N</do_not_open_newfile_init>
-      <create_parent_folder>N</create_parent_folder>
-      <split>N</split>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format />
-      <sheetname>Invalid Transactions</sheetname>
-      <autosizecolums>Y</autosizecolums>
-      <nullisblank>N</nullisblank>
-      <protect_sheet>N</protect_sheet>
-      <password>Encrypted </password>
-      <splitevery>0</splitevery>
-      <usetempfiles>N</usetempfiles>
-      <tempdirectory />
-    </file>
-    <template>
-      <enabled>N</enabled>
-      <append>N</append>
-      <filename>template.xls</filename>
-    </template>
-    <fields>
-      <field>
-        <name>productCode</name>
-        <type>String</type>
-        <format />
-      </field>
-      <field>
-        <name>productName</name>
-        <type>String</type>
-        <format />
-      </field>
-      <field>
-        <name>productScale</name>
-        <type>String</type>
-        <format />
-      </field>
-      <field>
-        <name>productVendor</name>
-        <type>String</type>
-        <format />
-      </field>
-      <field>
-        <name>productDescription</name>
-        <type>String</type>
-        <format />
-      </field>
-      <field>
-        <name>productLine</name>
-        <type>String</type>
-        <format />
-      </field>
-      <field>
-        <name>textDescription</name>
-        <type>String</type>
-        <format />
-      </field>
-      <field>
-        <name>htmlDescription</name>
-        <type>String</type>
-        <format />
-      </field>
-      <field>
-        <name>image</name>
-        <type>Binary</type>
-        <format />
-      </field>
-      <field>
-        <name>customerNumber</name>
-        <type>Integer</type>
-        <format />
-      </field>
-      <field>
-        <name>checkNumber</name>
-        <type>String</type>
-        <format />
-      </field>
-      <field>
-        <name>paymentDate</name>
-        <type>Date</type>
-        <format />
-      </field>
-      <field>
-        <name>amount</name>
-        <type>Number</type>
-        <format>00000000.00</format>
-      </field>
-      <field>
-        <name>officeCode</name>
-        <type>String</type>
-        <format />
-      </field>
-      <field>
-        <name>city</name>
-        <type>String</type>
-        <format />
-      </field>
-      <field>
-        <name>phone</name>
-        <type>String</type>
-        <format />
-      </field>
-      <field>
-        <name>addressLine1</name>
-        <type>String</type>
-        <format />
-      </field>
-      <field>
-        <name>addressLine2</name>
-        <type>String</type>
-        <format />
-      </field>
-      <field>
-        <name>state</name>
-        <type>String</type>
-        <format />
-      </field>
-      <field>
-        <name>country</name>
-        <type>String</type>
-        <format />
-      </field>
-      <field>
-        <name>postalCode</name>
-        <type>String</type>
-        <format />
-      </field>
-      <field>
-        <name>territory</name>
-        <type>String</type>
-        <format />
-      </field>
-      <field>
-        <name>productLine_1</name>
-        <type>String</type>
-        <format />
-      </field>
-      <field>
-        <name>quantityInStock</name>
-        <type>Integer</type>
-        <format />
-      </field>
-      <field>
-        <name>buyPrice</name>
-        <type>Number</type>
-        <format>00000000.00</format>
-      </field>
-      <field>
-        <name>MSRP</name>
-        <type>Number</type>
-        <format>00000000.00</format>
-      </field>
-    </fields>
-    <custom>
-      <header_font_name>arial</header_font_name>
-      <header_font_size>12</header_font_size>
-      <header_font_bold>Y</header_font_bold>
-      <header_font_italic>N</header_font_italic>
-      <header_font_underline>no</header_font_underline>
-      <header_font_orientation>horizontal</header_font_orientation>
-      <header_font_color>black</header_font_color>
-      <header_background_color>pale_blue</header_background_color>
-      <header_row_height>255</header_row_height>
-      <header_alignment>center</header_alignment>
-      <header_image />
-      <row_font_name>arial</row_font_name>
-      <row_font_size>10</row_font_size>
-      <row_font_color>black</row_font_color>
-      <row_background_color>none</row_background_color>
-    </custom>
+    <validate_all>N</validate_all>
+    <concat_errors>N</concat_errors>
+    <concat_separator>|</concat_separator>
+    <validator_field>
+      <name>customerNumber</name>
+      <validation_name>Validate Existing Customers</validation_name>
+      <max_length>15</max_length>
+      <min_length />
+      <null_allowed>N</null_allowed>
+      <only_null_allowed>N</only_null_allowed>
+      <only_numeric_allowed>N</only_numeric_allowed>
+      <data_type>String</data_type>
+      <data_type_verified>N</data_type_verified>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <max_value />
+      <min_value />
+      <start_string />
+      <end_string />
+      <start_string_not_allowed />
+      <end_string_not_allowed />
+      <regular_expression />
+      <regular_expression_not_allowed />
+      <error_code />
+      <error_description />
+      <is_sourcing_values>Y</is_sourcing_values>
+      <sourcing_step>Read Customers From customerservice</sourcing_step>
+      <sourcing_field>customerNumber</sourcing_field>
+      <allowed_value />
+    </validator_field>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -2085,90 +1697,14 @@ FROM products
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Write Offices to ODS</name>
-    <type>TableOutput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>aes_puj_modval_ods</connection>
-    <schema />
-    <table>office</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
-      <field>
-        <column_name>officeCode</column_name>
-        <stream_name>officeCode</stream_name>
-      </field>
-      <field>
-        <column_name>city</column_name>
-        <stream_name>city</stream_name>
-      </field>
-      <field>
-        <column_name>phone</column_name>
-        <stream_name>phone</stream_name>
-      </field>
-      <field>
-        <column_name>addressLine1</column_name>
-        <stream_name>addressLine1</stream_name>
-      </field>
-      <field>
-        <column_name>addressLine2</column_name>
-        <stream_name>addressLine2</stream_name>
-      </field>
-      <field>
-        <column_name>state</column_name>
-        <stream_name>state</stream_name>
-      </field>
-      <field>
-        <column_name>postalCode</column_name>
-        <stream_name>postalCode</stream_name>
-      </field>
-      <field>
-        <column_name>territory</column_name>
-        <stream_name>territory</stream_name>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>752</xloc>
+      <xloc>1920</xloc>
       <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Write Order Details to ODS</name>
-    <type>TableOutput</type>
+    <name>Read Customers From customerservice</name>
+    <type>TableInput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -2177,41 +1713,25 @@ FROM products
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>aes_puj_modval_ods</connection>
-    <schema />
-    <table>orderdetails</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
-      <field>
-        <column_name>orderNumber</column_name>
-        <stream_name>orderNumber</stream_name>
-      </field>
-      <field>
-        <column_name>productCode</column_name>
-        <stream_name>orderNumber</stream_name>
-      </field>
-      <field>
-        <column_name>quantityOrdered</column_name>
-        <stream_name>quantityOrdered</stream_name>
-      </field>
-      <field>
-        <column_name>priceEach</column_name>
-        <stream_name>priceEach</stream_name>
-      </field>
-    </fields>
+    <connection>aes_puj_modval_customerservice</connection>
+    <sql>SELECT
+  customerNumber
+, contactLastName
+, contactFirstName
+, phone
+, addressLine1
+, addressLine2
+, city
+, state
+, postalCode
+, country
+FROM customers
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -2221,14 +1741,14 @@ FROM products
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1584</xloc>
-      <yloc>288</yloc>
+      <xloc>1920</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Write Order to ODS</name>
-    <type>TableOutput</type>
+    <name>Read Order</name>
+    <type>TableInput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -2237,53 +1757,22 @@ FROM products
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>aes_puj_modval_ods</connection>
-    <schema />
-    <table>orders</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
-      <field>
-        <column_name>orderNumber</column_name>
-        <stream_name>orderNumber</stream_name>
-      </field>
-      <field>
-        <column_name>orderDate</column_name>
-        <stream_name>orderDate</stream_name>
-      </field>
-      <field>
-        <column_name>requiredDate</column_name>
-        <stream_name>requiredDate</stream_name>
-      </field>
-      <field>
-        <column_name>shippedDate</column_name>
-        <stream_name>shippedDate</stream_name>
-      </field>
-      <field>
-        <column_name>status</column_name>
-        <stream_name>status</stream_name>
-      </field>
-      <field>
-        <column_name>comments</column_name>
-        <stream_name>comments</stream_name>
-      </field>
-      <field>
-        <column_name>customerNumber</column_name>
-        <stream_name>customerNumber</stream_name>
-      </field>
-    </fields>
+    <connection>aes_puj_modval_classicmodels</connection>
+    <sql>SELECT
+  orderNumber
+, orderDate
+, requiredDate
+, shippedDate
+, status
+, comments
+, customerNumber
+FROM orders
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -2293,7 +1782,7 @@ FROM products
       </output>
     </remotesteps>
     <GUI>
-      <xloc>2416</xloc>
+      <xloc>2208</xloc>
       <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2302,7 +1791,7 @@ FROM products
     <name>Write Payments to ODS</name>
     <type>TableOutput</type>
     <description />
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution />
     <copies>1</copies>
     <partitioning>
@@ -2353,14 +1842,14 @@ FROM products
       </output>
     </remotesteps>
     <GUI>
-      <xloc>496</xloc>
+      <xloc>1504</xloc>
       <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Write Product Lines to ODS</name>
-    <type>TableOutput</type>
+    <name>Read Payments</name>
+    <type>TableInput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -2369,41 +1858,19 @@ FROM products
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>aes_puj_modval_ods</connection>
-    <schema />
-    <table>productLine</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
-      <field>
-        <column_name>productLine</column_name>
-        <stream_name>productLine</stream_name>
-      </field>
-      <field>
-        <column_name>textDescription</column_name>
-        <stream_name>textDescription</stream_name>
-      </field>
-      <field>
-        <column_name>htmlDescription</column_name>
-        <stream_name>htmlDescription</stream_name>
-      </field>
-      <field>
-        <column_name>image</column_name>
-        <stream_name>image</stream_name>
-      </field>
-    </fields>
+    <connection>aes_puj_modval_classicmodels</connection>
+    <sql>SELECT
+  customerNumber
+, checkNumber
+, paymentDate
+, amount
+FROM payments
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -2413,8 +1880,121 @@ FROM products
       </output>
     </remotesteps>
     <GUI>
-      <xloc>208</xloc>
+      <xloc>1360</xloc>
       <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Write Invalid Products</name>
+    <type>ExcelOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <header>Y</header>
+    <footer>N</footer>
+    <encoding>UTF-8</encoding>
+    <append>N</append>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <file>
+      <name>${Internal.Entry.Current.Directory}/productosNoValidas.xls</name>
+      <extention>xls</extention>
+      <do_not_open_newfile_init>N</do_not_open_newfile_init>
+      <create_parent_folder>N</create_parent_folder>
+      <split>N</split>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format />
+      <sheetname>Invalid Transactions</sheetname>
+      <autosizecolums>Y</autosizecolums>
+      <nullisblank>N</nullisblank>
+      <protect_sheet>N</protect_sheet>
+      <password>Encrypted </password>
+      <splitevery>0</splitevery>
+      <usetempfiles>N</usetempfiles>
+      <tempdirectory />
+    </file>
+    <template>
+      <enabled>N</enabled>
+      <append>N</append>
+      <filename>template.xls</filename>
+    </template>
+    <fields>
+      <field>
+        <name>productCode</name>
+        <type>None</type>
+        <format />
+      </field>
+      <field>
+        <name>productName</name>
+        <type>None</type>
+        <format />
+      </field>
+      <field>
+        <name>productScale</name>
+        <type>None</type>
+        <format />
+      </field>
+      <field>
+        <name>productVendor</name>
+        <type>None</type>
+        <format />
+      </field>
+      <field>
+        <name>productDescription</name>
+        <type>None</type>
+        <format />
+      </field>
+      <field>
+        <name>productLine</name>
+        <type>None</type>
+        <format />
+      </field>
+      <field>
+        <name>buyPrice</name>
+        <type>None</type>
+        <format />
+      </field>
+      <field>
+        <name>MSRP</name>
+        <type>None</type>
+        <format />
+      </field>
+    </fields>
+    <custom>
+      <header_font_name>arial</header_font_name>
+      <header_font_size>12</header_font_size>
+      <header_font_bold>Y</header_font_bold>
+      <header_font_italic>N</header_font_italic>
+      <header_font_underline>no</header_font_underline>
+      <header_font_orientation>horizontal</header_font_orientation>
+      <header_font_color>black</header_font_color>
+      <header_background_color>pale_blue</header_background_color>
+      <header_row_height>255</header_row_height>
+      <header_alignment>center</header_alignment>
+      <header_image />
+      <row_font_name>arial</row_font_name>
+      <row_font_size>10</row_font_size>
+      <row_font_color>black</row_font_color>
+      <row_background_color>none</row_background_color>
+    </custom>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1040</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2489,15 +2069,571 @@ FROM products
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1264</xloc>
+      <xloc>1216</xloc>
       <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read Products From customerservice</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_puj_modval_customerservice</connection>
+    <sql>SELECT
+  productCode
+, productName
+, productScale
+, productVendor
+, productDescription
+FROM products
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1040</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read Products From classicmodels</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_puj_modval_classicmodels</connection>
+    <sql>SELECT
+  productCode
+, productName
+, productLine
+, productScale
+, productVendor
+, productDescription
+, quantityInStock
+, buyPrice
+, MSRP
+FROM products
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>864</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Data validator</name>
+    <type>Validator</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <validate_all>N</validate_all>
+    <concat_errors>N</concat_errors>
+    <concat_separator>|</concat_separator>
+    <validator_field>
+      <name>productCode</name>
+      <validation_name>Validate Existing Products</validation_name>
+      <max_length>15</max_length>
+      <min_length />
+      <null_allowed>N</null_allowed>
+      <only_null_allowed>N</only_null_allowed>
+      <only_numeric_allowed>N</only_numeric_allowed>
+      <data_type>String</data_type>
+      <data_type_verified>N</data_type_verified>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <max_value />
+      <min_value />
+      <start_string />
+      <end_string />
+      <start_string_not_allowed />
+      <end_string_not_allowed />
+      <regular_expression />
+      <regular_expression_not_allowed />
+      <error_code />
+      <error_description />
+      <is_sourcing_values>Y</is_sourcing_values>
+      <sourcing_step>Read Products From customerservice</sourcing_step>
+      <sourcing_field>productCode</sourcing_field>
+      <allowed_value />
+    </validator_field>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1040</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read Offices</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_puj_modval_classicmodels</connection>
+    <sql>SELECT
+  officeCode
+, city
+, phone
+, addressLine1
+, addressLine2
+, state
+, country
+, postalCode
+, territory
+FROM offices
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read Product Lines</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_puj_modval_classicmodels</connection>
+    <sql>SELECT
+  productLine
+, textDescription
+, htmlDescription
+, image
+FROM productlines
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Write Offices to ODS</name>
+    <type>TableOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_puj_modval_ods</connection>
+    <schema />
+    <table>office</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>officeCode</column_name>
+        <stream_name>officeCode</stream_name>
+      </field>
+      <field>
+        <column_name>city</column_name>
+        <stream_name>city</stream_name>
+      </field>
+      <field>
+        <column_name>phone</column_name>
+        <stream_name>phone</stream_name>
+      </field>
+      <field>
+        <column_name>addressLine1</column_name>
+        <stream_name>addressLine1</stream_name>
+      </field>
+      <field>
+        <column_name>addressLine2</column_name>
+        <stream_name>addressLine2</stream_name>
+      </field>
+      <field>
+        <column_name>state</column_name>
+        <stream_name>state</stream_name>
+      </field>
+      <field>
+        <column_name>postalCode</column_name>
+        <stream_name>postalCode</stream_name>
+      </field>
+      <field>
+        <column_name>territory</column_name>
+        <stream_name>territory</stream_name>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Write Product Lines to ODS</name>
+    <type>TableOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>aes_puj_modval_ods</connection>
+    <schema />
+    <table>productLine</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>productLine</column_name>
+        <stream_name>productLine</stream_name>
+      </field>
+      <field>
+        <column_name>textDescription</column_name>
+        <stream_name>textDescription</stream_name>
+      </field>
+      <field>
+        <column_name>htmlDescription</column_name>
+        <stream_name>htmlDescription</stream_name>
+      </field>
+      <field>
+        <column_name>image</column_name>
+        <stream_name>image</stream_name>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Write Invalid Payments</name>
+    <type>ExcelOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <header>Y</header>
+    <footer>N</footer>
+    <encoding>UTF-8</encoding>
+    <append>N</append>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <file>
+      <name>${Internal.Entry.Current.Directory}/pagosNoValidas.xls</name>
+      <extention>xls</extention>
+      <do_not_open_newfile_init>N</do_not_open_newfile_init>
+      <create_parent_folder>N</create_parent_folder>
+      <split>N</split>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format />
+      <sheetname>Invalid Transactions</sheetname>
+      <autosizecolums>Y</autosizecolums>
+      <nullisblank>N</nullisblank>
+      <protect_sheet>N</protect_sheet>
+      <password>Encrypted </password>
+      <splitevery>0</splitevery>
+      <usetempfiles>N</usetempfiles>
+      <tempdirectory />
+    </file>
+    <template>
+      <enabled>N</enabled>
+      <append>N</append>
+      <filename>template.xls</filename>
+    </template>
+    <fields>
+      <field>
+        <name>customerNumber</name>
+        <type>None</type>
+        <format />
+      </field>
+      <field>
+        <name>checkNumber</name>
+        <type>None</type>
+        <format />
+      </field>
+      <field>
+        <name>paymentDate</name>
+        <type>None</type>
+        <format />
+      </field>
+      <field>
+        <name>amount</name>
+        <type>None</type>
+        <format />
+      </field>
+    </fields>
+    <custom>
+      <header_font_name>arial</header_font_name>
+      <header_font_size>12</header_font_size>
+      <header_font_bold>Y</header_font_bold>
+      <header_font_italic>N</header_font_italic>
+      <header_font_underline>no</header_font_underline>
+      <header_font_orientation>horizontal</header_font_orientation>
+      <header_font_color>black</header_font_color>
+      <header_background_color>pale_blue</header_background_color>
+      <header_row_height>255</header_row_height>
+      <header_alignment>center</header_alignment>
+      <header_image />
+      <row_font_name>arial</row_font_name>
+      <row_font_size>10</row_font_size>
+      <row_font_color>black</row_font_color>
+      <row_background_color>none</row_background_color>
+    </custom>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1504</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Write Invalid Customers 2</name>
+    <type>ExcelOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <header>Y</header>
+    <footer>N</footer>
+    <encoding>UTF-8</encoding>
+    <append>N</append>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <file>
+      <name>${Internal.Entry.Current.Directory}/orderssNoValidas.xls</name>
+      <extention>xls</extention>
+      <do_not_open_newfile_init>N</do_not_open_newfile_init>
+      <create_parent_folder>N</create_parent_folder>
+      <split>N</split>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format />
+      <sheetname>Invalid Transactions</sheetname>
+      <autosizecolums>Y</autosizecolums>
+      <nullisblank>N</nullisblank>
+      <protect_sheet>N</protect_sheet>
+      <password>Encrypted </password>
+      <splitevery>0</splitevery>
+      <usetempfiles>N</usetempfiles>
+      <tempdirectory />
+    </file>
+    <template>
+      <enabled>N</enabled>
+      <append>N</append>
+      <filename>template.xls</filename>
+    </template>
+    <fields>
+      <field>
+        <name>orderDate</name>
+        <type>None</type>
+        <format />
+      </field>
+      <field>
+        <name>requiredDate</name>
+        <type>None</type>
+        <format />
+      </field>
+      <field>
+        <name>shippedDate</name>
+        <type>None</type>
+        <format />
+      </field>
+      <field>
+        <name>status</name>
+        <type>None</type>
+        <format />
+      </field>
+      <field>
+        <name>comments</name>
+        <type>None</type>
+        <format />
+      </field>
+      <field>
+        <name>customerNumber</name>
+        <type>None</type>
+        <format />
+      </field>
+      <field>
+        <name>orderNumber</name>
+        <type>None</type>
+        <format />
+      </field>
+    </fields>
+    <custom>
+      <header_font_name>arial</header_font_name>
+      <header_font_size>12</header_font_size>
+      <header_font_bold>Y</header_font_bold>
+      <header_font_italic>N</header_font_italic>
+      <header_font_underline>no</header_font_underline>
+      <header_font_orientation>horizontal</header_font_orientation>
+      <header_font_color>black</header_font_color>
+      <header_background_color>pale_blue</header_background_color>
+      <header_row_height>255</header_row_height>
+      <header_alignment>center</header_alignment>
+      <header_image />
+      <row_font_name>arial</row_font_name>
+      <row_font_size>10</row_font_size>
+      <row_font_color>black</row_font_color>
+      <row_background_color>none</row_background_color>
+    </custom>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>2352</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step_error_handling>
     <error>
-      <source_step>Data validator</source_step>
-      <target_step>Write Invalid Products</target_step>
+      <source_step>Data validator 2 2</source_step>
+      <target_step>Write Employees to ODS 2</target_step>
       <is_enabled>Y</is_enabled>
       <nr_valuename />
       <descriptions_valuename />
@@ -2520,8 +2656,20 @@ FROM products
       <min_pct_rows />
     </error>
     <error>
-      <source_step>Data validator 2 2</source_step>
-      <target_step>Write Employees to ODS 2</target_step>
+      <source_step>Write Payments to ODS</source_step>
+      <target_step>Write Invalid Payments</target_step>
+      <is_enabled>Y</is_enabled>
+      <nr_valuename />
+      <descriptions_valuename />
+      <fields_valuename />
+      <codes_valuename />
+      <max_errors />
+      <max_pct_errors />
+      <min_pct_rows />
+    </error>
+    <error>
+      <source_step>Data validator</source_step>
+      <target_step>Write Invalid Products</target_step>
       <is_enabled>Y</is_enabled>
       <nr_valuename />
       <descriptions_valuename />
