@@ -992,7 +992,7 @@ FROM D_Office
     <free_memory />
     <compress>N</compress>
     <compress_variable />
-    <unique_rows>Y</unique_rows>
+    <unique_rows>N</unique_rows>
     <fields>
       <field>
         <name>officeCode</name>
@@ -2666,7 +2666,7 @@ FROM D_Employee
     <free_memory />
     <compress>N</compress>
     <compress_variable />
-    <unique_rows>Y</unique_rows>
+    <unique_rows>N</unique_rows>
     <fields>
       <field>
         <name>employeeNumber</name>
@@ -2744,7 +2744,7 @@ FROM D_Employee
       <method>none</method>
       <schema_name />
     </partitioning>
-    <join_type>INNER</join_type>
+    <join_type>FULL OUTER</join_type>
     <step1>Sort Calls by Employee Number</step1>
     <step2>Sort Employees</step2>
     <keys_1>
@@ -2814,10 +2814,11 @@ FROM D_Customer
       <method>none</method>
       <schema_name />
     </partitioning>
-    <join_type>INNER</join_type>
+    <join_type>LEFT OUTER</join_type>
     <step1>Merge Calls and Employees</step1>
     <step2>Read Customer Number from EDW</step2>
     <keys_1>
+      <key>customerNumber</key>
     </keys_1>
     <keys_2>
       <key>customerNumber</key>
@@ -2883,7 +2884,7 @@ FROM D_Product
       <method>none</method>
       <schema_name />
     </partitioning>
-    <join_type>INNER</join_type>
+    <join_type>LEFT OUTER</join_type>
     <step1>Merge Calls and Customers</step1>
     <step2>Read Product Codes from EDW</step2>
     <keys_1>
